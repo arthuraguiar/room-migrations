@@ -39,6 +39,13 @@ android {
     room {
         schemaDirectory("$projectDir/schemas")
     }
+
+    sourceSets {
+        sourceSets {
+            // Adds exported schema location as test app assets.
+            getByName("androidTest").assets.srcDir("$projectDir/schemas")
+        }
+    }
 }
 
 dependencies {
@@ -52,4 +59,5 @@ dependencies {
     testImplementation(libs.room.testing)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+    androidTestImplementation(libs.room.testing)
 }
