@@ -66,8 +66,8 @@ class SampleDatabaseTest {
     @Test
     fun insertIntoBankAndGet() = runBlocking {
         // When
-        bankDao.insertBank(BankEntity("Banco do Brasil",0, "Rua Mauro Lopes"))
-        bankDao.insertBank(BankEntity("Itaú", 0,"Rua 1"))
+        bankDao.insertBank(BankEntity(0,"Banco do Brasil", "Rua Mauro Lopes"))
+        bankDao.insertBank(BankEntity(0,"Itaú","Rua 1"))
         val bank1 = bankDao.getBankByName("Banco do Brasil")
         val bank2 = bankDao.getBankByName("Itaú")
 
@@ -79,7 +79,7 @@ class SampleDatabaseTest {
     @Test
     fun insertIntoBankAndDelete() = runBlocking {
         // When
-        bankDao.insertBank(BankEntity( "Banco do Brasil", 0,"Rua Mauro Lopes"))
+        bankDao.insertBank(BankEntity( 0,"Banco do Brasil","Rua Mauro Lopes"))
         bankDao.deleteBankByName("Banco do Brasil")
         val bank1 = bankDao.getBankByName("Banco do Brasil")
 
