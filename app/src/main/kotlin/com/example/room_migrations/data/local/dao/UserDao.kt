@@ -11,6 +11,9 @@ interface UserDao {
     @Insert
     suspend fun insertUser(user: UserEntity): Long
 
-    @Query("SELECT * FROM user whERE id = :id")
-    suspend fun getUserById(id: Int): UserEntity?
+    @Query("SELECT * FROM user WHERE first_name = :firstName")
+    suspend fun getUserByFirstName(firstName: String): UserEntity?
+
+    @Query("DELETE FROM user WHERE last_name = :lastName")
+    suspend fun deleteAllByLastName(lastName: String): Int
 }
