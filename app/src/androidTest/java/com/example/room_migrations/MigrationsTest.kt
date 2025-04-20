@@ -89,14 +89,18 @@ class MigrationsTest {
         db = helper.runMigrationsAndValidate(TEST_DB, 3, true)
 
         // Validate the migration: Validate the new column 'id' with generated values and if the 'name' column loose its unique constraint
+        db.query("INSERT INTO bank (id, bank_name, address) VALUES ('0', 'Banco do Brasil', 'Rua 2')")
         var cursor = db.query("SELECT * FROM bank")
-        val expectedId = 1
+        var expectedId = 1
         while (cursor.moveToNext()) {
             val bankId = cursor.getString(cursor.getColumnIndexOrThrow("id"))
+            val bankName = cursor.getString(cursor.getColumnIndexOrThrow("bank_name"))
 
             // Perform your assertions on newValue
             Log.d("MigrationTest", "Value of new 'id' column: $bankId")
+            assert(bankName == "Banco do Brasil")
             assert(bankId == expectedId.toString())
+            expectedId = expectedId.inc()
         }
 
         // Validate the migration: Validate if each user has now the balance column with the default value of 0.0
