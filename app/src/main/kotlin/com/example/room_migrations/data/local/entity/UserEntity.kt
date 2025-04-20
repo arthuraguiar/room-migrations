@@ -16,4 +16,7 @@ data class UserEntity(
 
     @ColumnInfo(name = "last_name")
     val lastName: String,
+
+    @ColumnInfo(name = "user_balance", defaultValue = "0.0")
+    val userBalance: Double,
 )

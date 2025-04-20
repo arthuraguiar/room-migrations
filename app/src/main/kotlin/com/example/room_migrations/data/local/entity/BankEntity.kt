@@ -7,9 +7,12 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "bank")
 data class BankEntity(
 
-    @PrimaryKey
     @ColumnInfo(name = "bank_name")
     val name: String,
+
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "id", defaultValue = "0")
+    val id: Int,
 
     @ColumnInfo(name = "address")
     val address: String,
