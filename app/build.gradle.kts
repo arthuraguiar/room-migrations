@@ -40,6 +40,11 @@ android {
         schemaDirectory("$projectDir/schemas")
         generateKotlin = true
     }
+
+    sourceSets {
+        // Adds exported schema location as test app assets.
+        getByName("androidTest").assets.srcDir("$projectDir/schemas")
+    }
 }
 
 dependencies {
